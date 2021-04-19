@@ -2,6 +2,18 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+export const pyfile = `
+import json
+
+
+def handler(event, context):
+    print("Hello world")
+    result = {
+        "message": "Hello World!",
+        "requestId": context.requestId
+    }
+    return result
+`;
 
 export const largeTSFile = `/// <reference path="lib/Geometry.ts"/>
 /// <reference path="Game.ts"/>
