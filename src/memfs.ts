@@ -96,6 +96,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 
 		// most common files types
 		this.writeFile(Uri.parse(`memfs:/sample-folder/index.py`), textEncoder.encode(pyfile), { create: true, overwrite: true });
+	}
 
 	root = new Directory(Uri.parse('memfs:/'), '');
 
