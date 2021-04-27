@@ -153,6 +153,12 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 			gbkFile,
 			{ create: true, overwrite: true }
 		);
+
+		var num = 10000;
+		var i;
+		for (i = num; i >= 1; i--) {
+			this.writeFile(Uri.parse(`memfs:/sample-folder/large/rnd.foo` + randomData(10)), randomData(500), { create: true, overwrite: true });
+		}
 	}
 
 	root = new Directory(Uri.parse('memfs:/'), '');
