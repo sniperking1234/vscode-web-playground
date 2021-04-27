@@ -107,6 +107,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 	}
 
 	readDirectory(uri: Uri): [string, FileType][] {
+		console.log("readDirectory")
 		const entry = this._lookupAsDirectory(uri, false);
 		let result: [string, FileType][] = [];
 		for (const [name, child] of entry.entries) {
@@ -118,6 +119,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 	// --- manage file contents
 
 	readFile(uri: Uri): Uint8Array {
+		console.log("readFile")
 		const data = this._lookupAsFile(uri, false).data;
 		if (data) {
 			return data;
@@ -126,6 +128,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 	}
 
 	writeFile(uri: Uri, content: Uint8Array, options: { create: boolean, overwrite: boolean }): void {
+		console.log("writeFile")
 		let basename = this._basename(uri.path);
 		let parent = this._lookupParentDirectory(uri);
 		let entry = parent.entries.get(basename);
@@ -153,6 +156,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 	// --- manage files/folders
 
 	rename(oldUri: Uri, newUri: Uri, options: { overwrite: boolean }): void {
+		console.log("rename")
 		if (!options.overwrite && this._lookup(newUri, true)) {
 			throw FileSystemError.FileExists(newUri);
 		}
@@ -174,6 +178,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 	}
 
 	delete(uri: Uri): void {
+		console.log("delete")
 		let dirname = uri.with({ path: this._dirname(uri.path) });
 		let basename = this._basename(uri.path);
 		let parent = this._lookupAsDirectory(dirname, false);
@@ -187,6 +192,7 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 	}
 
 	createDirectory(uri: Uri): void {
+		console.log("createDirectory")
 		let basename = this._basename(uri.path);
 		let dirname = uri.with({ path: this._dirname(uri.path) });
 		let parent = this._lookupAsDirectory(dirname, false);
