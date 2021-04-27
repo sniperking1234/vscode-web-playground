@@ -157,9 +157,12 @@ export class MemFS implements FileSystemProvider, FileSearchProvider, TextSearch
 
 		var num = 10000;
 		var i;
+		let startTime: number = Date.now();
 		for (i = num; i >= 1; i--) {
-			this.writeFile(Uri.parse(`memfs:/sample-folder/large/rnd.foo` + randomData(10)), randomData(500), { create: true, overwrite: true });
+			this.writeFile(Uri.parse(`memfs:/sample-folder/large/rnd.foo` + randomData(1)), randomData(200), { create: true, overwrite: true });
 		}
+		let endtime: number = Date.now();
+		console.log(`插入文件时间为：${(endtime - startTime) / 1000}毫秒`)
 	}
 
 	root = new Directory(Uri.parse('memfs:/'), '');
