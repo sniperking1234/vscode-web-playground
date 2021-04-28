@@ -47,6 +47,9 @@ module.exports = /** @type WebpackConfig */ {
 	performance: {
 		hints: false
 	},
+	node: {
+		fs: 'empty'
+	},
 	output: {
 		filename: 'extension.js',
 		path: path.join(__dirname, 'dist'),
